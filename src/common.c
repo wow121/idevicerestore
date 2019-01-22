@@ -58,12 +58,25 @@ static int info_disabled = 0;
 static int error_disabled = 0;
 static int debug_disabled = 0;
 
+static int info_index=0;
+
 void info(const char* format, ...)
 {
 	if (info_disabled) return;
+
+	info_index++;
+
+	char indexstr[1024];
+
+	char *tag="---->";
+
+	sprintf(indexstr,"%d%s",info_index,tag);
+
+	strcat(indexstr,format);
+
 	va_list vargs;
 	va_start(vargs, format);
-	vfprintf((info_stream) ? info_stream : stdout, format, vargs);
+	vfprintf((info_stream) ? info_stream : stdout, indexstr, vargs);
 	va_end(vargs);
 
 	fflush(stdout);

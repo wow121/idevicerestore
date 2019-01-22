@@ -233,13 +233,16 @@ int idevicerestore_start(struct idevicerestore_client_t* client)
 			// Download WTF IPSW
 			char* s_wtfurl = NULL;
 			plist_t wtfurl = plist_access_path(client->version_data, 7, "MobileDeviceSoftwareVersionsByVersion", "5", "RecoverySoftwareVersions", "WTF", "304218112", "5", "FirmwareURL");
+            info("xianrui_info1 %s",s_wtfurl);
 			if (wtfurl && (plist_get_node_type(wtfurl) == PLIST_STRING)) {
 				plist_get_string_val(wtfurl, &s_wtfurl);
 			}
+            info("xianrui_info2 %s",s_wtfurl);
 			if (!s_wtfurl) {
 				info("Using hardcoded x12220000_5_Recovery.ipsw URL\n");
 				s_wtfurl = strdup("http://appldnld.apple.com.edgesuite.net/content.info.apple.com/iPhone/061-6618.20090617.Xse7Y/x12220000_5_Recovery.ipsw");
 			}
+            info("xianrui_info3 %s",s_wtfurl);
 
 			// make a local file name
 			char* fnpart = strrchr(s_wtfurl, '/');
