@@ -148,7 +148,7 @@ int ipsw_extract_to_file_with_progress(const char* ipsw, const char* infile, con
 		bytes += size;
 		if (print_progress) {
 			progress = ((double)bytes / (double)zstat.size) * 100.0;
-			print_progress_bar(progress);
+			// print_progress_bar(progress);
 		}
 	}
 
